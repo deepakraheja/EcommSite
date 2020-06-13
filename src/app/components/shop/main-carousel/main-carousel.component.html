@@ -3,10 +3,10 @@
     <div class="swiper-wrapper h-100">
       <div *ngFor="let slide of slides" class="swiper-slide">
 
-        <div [attr.data-background]="slide.bannerImage" class="slide-item swiper-lazy">
+        <div [attr.data-background]="ProductImage+slide.productID+'/bannerImage/'+slide.bannerImage" class="slide-item swiper-lazy">
           <div class="container sl-wrap">
             <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
-
+           
             <div fxLayout="column" fxLayoutAlign="center left" class="content">
               <h1>{{slide.title}}</h1>
               <h3>{{slide.subTitle}}</h3>

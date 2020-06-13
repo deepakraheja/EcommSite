@@ -1,4 +1,4 @@
-import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild, Input } from '@angular/core';
 import { Product } from "../../modals/product.model";
 import { CartItem } from "../../modals/cart-item";
 import { ProductService } from "../shared/services/product.service";
@@ -6,6 +6,8 @@ import { CartService } from "../shared/services/cart.service";
 import { Router, NavigationEnd } from '@angular/router';
 import { SidebarMenuService } from '../shared/sidebar/sidebar-menu.service';
 import { SidenavMenu } from '../shared/sidebar/sidebar-menu.model';
+import { SharedDataService } from 'src/app/Service/shared-data.service';
+import { Users } from 'src/app/modals/Users';
 
 @Component({
   selector: 'app-main',
@@ -15,18 +17,18 @@ import { SidenavMenu } from '../shared/sidebar/sidebar-menu.model';
 export class MainComponent implements OnInit {
 
   public sidenavMenuItems: Array<any>;
-
+  @Input() IsLogin: boolean = false;
   //public currencies = ['USD', 'EUR'];
-  //public currencies = ['Rs'];
-  //public currency: any;
+  public currencies = ['Rs'];
+  public currency: any;
   
-  // public flags = [
-  //   { name: 'English', image: 'assets/images/flags/gb.svg' },
-  //   // { name: 'German', image: 'assets/images/flags/de.svg' },
-  //   // { name: 'French', image: 'assets/images/flags/fr.svg' },
-  //   // { name: 'Russian', image: 'assets/images/flags/ru.svg' },
-  //   // { name: 'Turkish', image: 'assets/images/flags/tr.svg' }
-  // ]
+  public flags = [
+    { name: 'English', image: 'assets/images/flags/gb.svg' },
+    // { name: 'German', image: 'assets/images/flags/de.svg' },
+    // { name: 'French', image: 'assets/images/flags/fr.svg' },
+    // { name: 'Russian', image: 'assets/images/flags/ru.svg' },
+    // { name: 'Turkish', image: 'assets/images/flags/tr.svg' }
+  ]
   public flag: any;
 
   products: Product[];
@@ -39,7 +41,7 @@ export class MainComponent implements OnInit {
   wishlistItems: Product[] = [];
 
   public url: any;
-
+  public LoggedInUser: Users[] = [];
   navItems: SidenavMenu[] = [
     {
       displayName: 'Home',
@@ -261,7 +263,10 @@ export class MainComponent implements OnInit {
     }
   ];
 
-  constructor(public router: Router, private cartService: CartService, public sidenavMenuService: SidebarMenuService) {
+  constructor(public router: Router,
+    private cartService: CartService,
+    public sidenavMenuService: SidebarMenuService,
+    private _SharedDataService: SharedDataService) {
     this.cartService.getItems().subscribe(shoppingCartItems => this.shoppingCartItems = shoppingCartItems);
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
@@ -274,14 +279,25 @@ export class MainComponent implements OnInit {
   }
 
   ngOnInit() {
-    // this.currency = this.currencies[0];
-    // this.flag = this.flags[0];
+    this.currency = this.currencies[0];
+    this.flag = this.flags[0];
+ 
+    this._SharedDataService.currentUser.subscribe(a => {
+   
+      this.LoggedInUser = a;
+    });
   }
 
-  // public changeCurrency(currency) {
-  //   this.currency = currency;
-  // }
-  // public changeLang(flag) {
-  //   this.flag = flag;
-  // }
+  public changeCurrency(currency) {
+    this.currency = currency;
+  }
+  public changeLang(flag) {
+    this.flag = flag;
+  }
+  Logout() {
+ 
+    sessionStorage.removeItem('LoggedInUser');
+    this.LoggedInUser = [];
+    this.router.navigate(['/shop/products/all']);
+  }
 }

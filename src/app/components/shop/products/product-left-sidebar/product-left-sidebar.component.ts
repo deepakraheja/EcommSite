@@ -46,7 +46,7 @@ export class ProductLeftSidebarComponent implements OnInit {
   }
 
   BindProductByCategory() {
-    debugger
+ 
     this.route.params.subscribe((params: Params) => {
       const category = params['category'];
       let productObj = {
@@ -56,7 +56,7 @@ export class ProductLeftSidebarComponent implements OnInit {
       }
 
       this._prodService.getProductByCategory(productObj).subscribe(products => {
-        debugger;
+     ;
         this.allItems = products;
         //this.getTags(products)
         //this.getColors(products)

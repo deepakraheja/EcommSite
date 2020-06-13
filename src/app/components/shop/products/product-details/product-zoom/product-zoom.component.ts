@@ -2,6 +2,7 @@ import { Component, OnInit, Inject, ViewEncapsulation, ViewChild } from '@angula
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ProductService } from 'src/app/components/shared/services/product.service';
 import { Product } from 'src/app/modals/product.model';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-product-zoom',
@@ -10,6 +11,8 @@ import { Product } from 'src/app/modals/product.model';
   encapsulation: ViewEncapsulation.None
 })
 export class ProductZoomComponent implements OnInit {
+
+  public ProductImage = environment.ProductImage;
   public product;
   public selectedProductImageIndex;
 
@@ -17,6 +20,7 @@ export class ProductZoomComponent implements OnInit {
 
   constructor(private productsService: ProductService, public dialogRef: MatDialogRef<ProductZoomComponent>,
     @Inject(MAT_DIALOG_DATA) public data: { product, index }) {
+      debugger;
     this.product = data.product;
     this.selectedProductImageIndex = data.index;
   }

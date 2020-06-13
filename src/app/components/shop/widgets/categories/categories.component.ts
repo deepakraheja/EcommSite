@@ -12,11 +12,11 @@ export class CategoriesComponent implements OnInit {
   constructor(private _subcatService: SubCategoryService) { }
 
   ngOnInit() {
-    debugger;
+ ;
     this.BindSideSubCategory(); 
   }
   BindSideSubCategory() {
-    debugger;
+ ;
    
     let subCatObj = {
       SideSubCategory: 1

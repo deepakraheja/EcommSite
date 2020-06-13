@@ -23,7 +23,7 @@ export class MenuComponent implements OnInit {
 
   }
   BindCategory() {
-    debugger;
+ ;
     let CatObj = {
       Active: 1
 
@@ -43,7 +43,7 @@ export class MenuComponent implements OnInit {
           var ObjCategory = [];
           ObjCategory = res;
           this._subcatService.GetSubcategoryByCatId(subCatObj).subscribe(res => {
-            debugger
+         
             if (res != null && res.length > 0) {
               ObjCategory[index]['categoryID'] = res;
               this.SubCategory = ObjCategory;

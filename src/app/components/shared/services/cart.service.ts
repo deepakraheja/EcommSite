@@ -19,13 +19,13 @@ export class CartService {
   public observer: Subscriber<{}>;
 
   constructor(public snackBar: MatSnackBar) {
-    debugger;
+ ;
     this.cartItems.subscribe(products => products = products);
   }
 
   // Get Products
   public getItems(): Observable<CartItem[]> {
-    debugger
+ 
     const itemsStream = new Observable(observer => {
       observer.next(products);
       observer.complete();
@@ -35,12 +35,12 @@ export class CartService {
 
   // Add to cart
   public addToCart(product: Products, quantity: number) {
-    debugger;
+ ;
     let message, status;
     var item: CartItem | boolean = false;
     // If Products exist
     let hasItem = products.find((items, index) => {
-      debugger;
+   ;
       if (items.product.productID == product.productID) {
         let qty = products[index].quantity + quantity;
         let stock = this.calculateStockCounts(products[index], quantity);
@@ -60,7 +60,7 @@ export class CartService {
 
     // If Products does not exist (Add New Products)
     if (!hasItem) {
-      debugger;
+   ;
       item = { product: product, quantity: quantity };
       products.push(item);
       message = 'The product ' + product.productName + ' has been added to cart.';
@@ -75,7 +75,7 @@ export class CartService {
 
   // Calculate Product stock Counts
   public calculateStockCounts(product: CartItem, quantity): CartItem | Boolean {
-    debugger;
+ ;
     let message, status;
     let qty = product.quantity + quantity;
     let stock = product.product.stockQty;

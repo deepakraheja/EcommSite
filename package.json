@@ -24,6 +24,7 @@
     "@angular/router": "~9.0.2",
     "ngx-image-zoom": "^0.6.0",
     "ngx-img-zoom": "^4.1.2",
+    "ngx-mask": "^9.1.2",
     "ngx-pagination": "^5.0.0",
     "ngx-scrollbar": "^7.2.3",
     "ngx-spinner": "^9.0.2",

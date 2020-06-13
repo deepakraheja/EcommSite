@@ -227,20 +227,20 @@ export class HomeThreeComponent implements OnInit {
   }
 
   BindProductByPopular() {
-    debugger
+ 
 
     this._prodService.BindProductByPopular().subscribe(products => {
-      debugger;
+   ;
       this.Popularproducts = products;
 
     });
   }
 
   BindBannerImage() {
-    debugger
+ 
 
     this._prodService.GetBannerProduct().subscribe(products => {
-      debugger;
+   ;
       this.slides= products;
 
     });

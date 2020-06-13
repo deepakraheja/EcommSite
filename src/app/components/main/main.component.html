@@ -10,27 +10,13 @@
     </mat-sidenav>
     <mat-toolbar class="main-topbar" [ngClass]="{topbar_four: url == '/home/four'}">
         <mat-toolbar-row fxLayout="row" fxLayoutAlign="space-between center" class="top-bar container">
-            <span fxHide="false" fxHide.gt-sm>
+           <span fxHide="false" fxHide.gt-sm>
                 <button mat-icon-button (click)="start.toggle()">
                     <mat-icon>menu</mat-icon>
                 </button>
-            </span>
-            <div class="container" fxLayout="row" fxLayout.sm="column" fxLayout.xs="column" fxLayoutGap="20px"
-                fxlayoutalign="space-between center">
-                <div class="logo">
-                    <a [routerLink]="['/home']" routerLinkActive="router-link-active"><img
-                            src="assets/images/logo-01.png"></a>
-                </div>
-
-                <div fxflexoffset.gt-sm="10" fxFlex class="search-form">
-                    <form class="search-form" fxLayout="row">
-                        <div class="form-wrap">
-                            <input type="text" placeholder="Type to search...">
-                            <!-- <button class="btn-search" type="submit">Search</button> -->
-                        </div>
-                    </form>
-                </div>
-                <!-- <div class="widget-text">
+            </span> 
+            <div fxLayout="row" class="welcome-message">
+                <div class="widget-text">
                     <a mat-button [matMenuTriggerFor]="currencyMenu" #currencyMenuTrigger="matMenuTrigger">
                         {{currency}}<mat-icon class="mat-icon-sm caret cur-icon">arrow_drop_down</mat-icon>
                     </a>
@@ -55,27 +41,49 @@
                             </button>
                         </span>
                     </mat-menu>
-                </div> -->
+                </div>
+                <div class="widget-text">
+                    <a fxHide="false" *ngIf="LoggedInUser==[] || LoggedInUser==undefined || LoggedInUser?.length==0" fxHide.gt-xs [routerLink]="['/pages/my-account']" routerLinkActive="router-link-active">
+                        <mat-icon>person</mat-icon>Login
+                    </a>
+                    <a fxHide="false" *ngIf="LoggedInUser!=[] && LoggedInUser!=undefined && LoggedInUser?.length>0" fxHide.gt-xs [matMenuTriggerFor]="MyAccountMenu" #MyAccountMenuTrigger="matMenuTrigger">
+                        <mat-icon>person</mat-icon>My Account
+                    </a>
+                    <mat-menu #MyAccountMenu="matMenu" [overlapTrigger]="false" xPosition="before" class="app-dropdown">
+                        <span>
+                            <button mat-menu-item (click)="Logout()">
+                                <span>Logout</span>
+                        </button>
+                        </span>
+                    </mat-menu>
+                </div>
             </div>
             <div class="widgets-left" fxLayout="row">
 
                 <div class="widget-text">
-                    <a fxShow="false" fxShow.gt-xs [routerLink]="['/pages/wishlist']"
-                        routerLinkActive="router-link-active">
+                    <a fxShow="false" fxShow.gt-xs [routerLink]="['/pages/wishlist']" routerLinkActive="router-link-active">
                         <mat-icon class="mat-icon-lg mat-icon material-icons mr-10">favorite_border</mat-icon> WISHLIST
                     </a>
                 </div>
                 <div class="widget-text">
-                    <a fxShow="false" fxShow.gt-xs [routerLink]="['/pages/compare']"
-                        routerLinkActive="router-link-active">
+                    <a fxShow="false" fxShow.gt-xs [routerLink]="['/pages/compare']" routerLinkActive="router-link-active">
                         <mat-icon>cached</mat-icon>COMPARE
                     </a>
                 </div>
                 <div class="widget-text">
-                    <a fxShow="false" fxShow.gt-xs [routerLink]="['/pages/my-account']"
-                        routerLinkActive="router-link-active">
+                    <a fxShow="false" *ngIf="LoggedInUser==[] || LoggedInUser==undefined || LoggedInUser?.length==0" fxShow.gt-xs [routerLink]="['/pages/my-account']" routerLinkActive="router-link-active">
+                        <mat-icon>person</mat-icon>Login
+                    </a>
+                    <a fxShow="false" *ngIf="LoggedInUser!=[] && LoggedInUser!=undefined && LoggedInUser?.length>0" fxShow.gt-xs [matMenuTriggerFor]="MyAccountMenu" #MyAccountMenuTrigger="matMenuTrigger">
                         <mat-icon>person</mat-icon>My Account
                     </a>
+                    <mat-menu #MyAccountMenu="matMenu" [overlapTrigger]="false" xPosition="before" class="app-dropdown">
+                        <span>
+                            <button mat-menu-item (click)="Logout()">
+                                <span>Logout</span>
+                        </button>
+                        </span>
+                    </mat-menu>
                 </div>
             </div>
         </mat-toolbar-row>

@@ -23,7 +23,7 @@ export class ProductsService {
 
 
   BindProductByPopular(): Observable<Products[]> {
-    debugger
+ 
     this._methodName = "GetProductByPopular";
     return this._http.post<Products[]>(
       this._url + this._methodName, this._param
@@ -31,7 +31,7 @@ export class ProductsService {
   }
 
   getProductByCategory(_categoryObj: any): Observable<any[]> {
-    debugger
+ 
     this._methodName = "GetProductBySubcatecode";
     this._param = _categoryObj;
     return this._http.post<any[]>(

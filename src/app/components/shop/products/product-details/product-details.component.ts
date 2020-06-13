@@ -8,7 +8,10 @@ import { SwiperDirective, SwiperConfigInterface } from 'ngx-swiper-wrapper';
 import { ProductZoomComponent } from './product-zoom/product-zoom.component';
 
 import { ProductsService } from 'src/app/Service/Products.service';// created by deepak  on 1 jun 2020
+
 import { Products } from 'src/app/modals/products.model';// created by deepak  on 1 jun 2020
+import { environment } from 'src/environments/environment';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 
 @Component({
@@ -17,6 +20,7 @@ import { Products } from 'src/app/modals/products.model';// created by deepak  o
   styleUrls: ['./product-details.component.sass']
 })
 export class ProductDetailsComponent implements OnInit {
+  public ProductImage = environment.ProductImage;
 
   public config: SwiperConfigInterface = {};
   @Output() onOpenProductDialog: EventEmitter<any> = new EventEmitter();
@@ -41,7 +45,8 @@ export class ProductDetailsComponent implements OnInit {
     public dialog: MatDialog,
     private router: Router,
     private cartService: CartService,
-    public _productService: ProductsService) {
+    public _productService: ProductsService,
+    private spinner: NgxSpinnerService) {
 
     this.route.params.subscribe(params => {
       const id = params['id'];
@@ -49,12 +54,14 @@ export class ProductDetailsComponent implements OnInit {
       // this.productsService.getProduct(id).subscribe(product => {
       // this.product = product
       // });
-      debugger;
+      ;
+      this.spinner.show();
       let productObj = {
         rowID: id
       }
       this._productService.getProductById(productObj).subscribe(products => {
-        debugger
+        this.spinner.hide();
+        debugger;
         this.product = products;
       })
     });

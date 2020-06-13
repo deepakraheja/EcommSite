@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { SwiperConfigInterface, SwiperPaginationInterface } from 'ngx-swiper-wrapper';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-main-carousel',
@@ -7,6 +8,7 @@ import { SwiperConfigInterface, SwiperPaginationInterface } from 'ngx-swiper-wra
   styleUrls: ['./main-carousel.component.sass']
 })
 export class MainCarouselComponent implements OnInit {
+  public ProductImage = environment.ProductImage;
 
   @Input('slides') slides: Array<any> = [];
 

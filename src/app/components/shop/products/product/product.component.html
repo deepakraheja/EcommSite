@@ -2,10 +2,10 @@
    <mat-card fxLayout="column">
       <div class="product-img">
          <a class="product-link" [routerLink]="['/shop/product', Custproduct.rowID]">
-            <!-- <img [src]="product.pictures[0].big" alt=""> -->
-            <img src="../../../../../assets/ProductImage/1/headphone.png" alt="">
+            <img [src]="ProductImage+Custproduct.productID+'/frontImage/'+Custproduct.frontImage" alt="">
+            <!-- <img src="../../../../../assets/ProductImage/1/headphone.png" alt=""> -->
          </a>
-      </div>   
+      </div>
       <div class="product-info-wrapper">
          <span class="category">{{Custproduct.subcategoryName}}</span>
          <div class="title-wrap">
@@ -19,7 +19,7 @@
             <mat-icon class="mat-icon-xs mat-icon material-icons ng-star-inserted">star_rate</mat-icon>
          </div>
          <div class="price-wrap" fxLayout="row" fxLayoutAlign="space-between center">
-            <p>{{Custproduct.salePrice | currency:productsService?.currency:'symbol'}}</p>
+            <p>{{Custproduct.price | currency:productsService?.currency:'symbol'}}</p>
             <a (click)="addToCart(Custproduct)">
                <mat-icon class="mat-icon-lg mat-icon material-icons">shopping_cart</mat-icon>
             </a>

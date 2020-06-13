@@ -20,7 +20,7 @@ export class BrandsComponent implements OnInit {
   }
 
   BindCategory() {
-    debugger;
+ ;
     let CatObj = {
       Active: 1
 

@@ -13,6 +13,7 @@ export const environment = {
 
   Domain: 'http://localhost:4200/',
    //BASE_API_URL: 'http://ecomapi.uccnoida.com/api/',
+   ProductImage: 'http://localhost:5205/ProductImage/',
 };
 
 /*

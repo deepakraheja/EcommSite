@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import { Product } from 'src/app/modals/product.model';
 import { CustProduct } from 'src/app/modals/Custproduct.model';
 import { ProductDialogComponent } from '../product-dialog/product-dialog.component';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-product',
@@ -14,7 +15,8 @@ import { ProductDialogComponent } from '../product-dialog/product-dialog.compone
   styleUrls: ['./product.component.sass']
 })
 export class ProductComponent implements OnInit {
-
+  public ProductImage = environment.ProductImage;
+  
   @Output() onOpenProductDialog: EventEmitter<any> = new EventEmitter();
   @Input() product: Product;
   @Input() Custproduct: CustProduct;

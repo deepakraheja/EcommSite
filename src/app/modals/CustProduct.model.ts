@@ -26,6 +26,13 @@ export class CustProduct {
   colors?: ProductColor[];
   rowID?: string;
 
+  type?: string;
+  imagePath?: string;
+  title?: string;
+  subTitle?: string;
+  bannerImage?: string;
+  frontImage?: string;
+  
   constructor(
     productID?: number,
     name?: string,
@@ -45,6 +52,14 @@ export class CustProduct {
     tags?: ProductTags[],
     colors?: ProductColor[],
     rowID?: string,
+
+    type?: string,
+    imagePath?: string,
+    title?: string,
+    subTitle?: string,
+    bannerImage?: string,
+    frontImage?: string,
+    
   ) {
     this.productID = productID;
     this.productName = name;
@@ -64,6 +79,12 @@ export class CustProduct {
     this.tags = tags;
     this.colors = colors;
     this.rowID = rowID;
+
+    this.type = type;
+    this.imagePath = imagePath;
+    this.subTitle = subTitle;
+    this.bannerImage = bannerImage;
+    this.frontImage = frontImage
   }
 
 }

@@ -8,4 +8,6 @@ export const environment = {
   BASE_API_URL: 'http://ecomapi.uccnoida.com/api/',
 
   Domain: 'http://localhost:4200/',
+
+  ProductImage: 'http://ecomapi.uccnoida.com/ProductImage/',
 };
