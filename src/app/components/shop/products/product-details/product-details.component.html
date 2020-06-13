@@ -19,7 +19,7 @@
                      <!-- <img [src]="product.pictures[bigProductImageIndex].big" /> -->
                      <img [src]="ProductImage+product[0].productID+'/productImages/'+product[0]?.productImg[bigProductImageIndex]" />
                   </div>
-                  <a (click)="openProductDialog(product, bigProductImageIndex)" style="cursor: pointer;">
+                  <a (click)="openProductDialog(product[0], bigProductImageIndex)" style="cursor: pointer;">
                      <mat-icon>zoom_in</mat-icon>
                   </a>
                </mat-card>
