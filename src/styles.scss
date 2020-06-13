@@ -1,0 +1,55 @@
+/* You can add global styles to this file, and also import other style files */
+
+/* You can add global styles to this file, and also import other style files */
+
+/* You can add global styles to this file, and also import other style files */
+@import '~swiper/css/swiper.min.css';
+@import '~@angular/material/prebuilt-themes/indigo-pink.css';
+
+// Color 1 scss
+@import './assets/scss/color1.scss';
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+
+
+::ng-deep {
+  ng-scrollbar.virtual-scroll {
+    --scrollbar-size: 8px;
+    --scrollbar-thumb-color: gray;
+    --scrollbar-hover-size: 12px;
+    --scrollbar-track-color: rgba(0, 0, 0, 0.05);
+    --scrollbar-border-radius: 10px;
+
+    margin: 1em;
+    height: 200px;
+    max-height: 200px;
+    border-radius: 6px;
+    border: 1px solid gray;
+    overflow: hidden;
+  }
+}
+
+.sample {
+  }
+
+
+  .inner {
+    width: 140%;
+  }
+
+  .example-item {
+    height: 50px;
+    display: flex;
+    align-items: center;
+    padding-left: 2em;
+
+    &:nth-child(odd) {
+      background: #f1ffff;
+    }
+
+    &:nth-child(even) {
+      background: #ecf8ff;
+    }
+  }
