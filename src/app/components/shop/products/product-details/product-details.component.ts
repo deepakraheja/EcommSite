@@ -60,10 +60,14 @@ export class ProductDetailsComponent implements OnInit {
         rowID: id
       }
       this._productService.getProductById(productObj).subscribe(products => {
-        this.spinner.hide();
+        //this.spinner.hide();
         debugger;
         this.product = products;
       })
+      setTimeout(() => {
+        this.spinner.hide();
+        
+      }, 2000);
     });
   }
 
