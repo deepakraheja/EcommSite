@@ -40,7 +40,7 @@ export class ProductsService {
   }
 
   getProductById(_productObj: any): Observable<Products[]> {
-    this._methodName = "GetProductBybyRowID"; 
+    this._methodName = "GetProductByRowID"; 
     this._param = _productObj;
     return this._http.post<Products[]>(
       this._url + this._methodName, this._param

@@ -1,97 +1,212 @@
 <div class="container">
    <div class="details-wrapper sec-padding">
       <div fxLayout="column" fxFlex="100" fxFlex.gt-sm="80">
-         <div fxLayout="row wrap" fxFlex="100" fxFlex.gt-md="100" fxFlex.gt-sm="100">
-            <div fxFlex="100" fxFlex.gt-md="50" fxFlex.md="45">
-               <mat-card class="product-image">
-                  <div *ngFor="let image of product[0].productImg">
-                     <ngx-image-zoom [thumbImage]="ProductImage+product[0].productID+'/productImages/'+image"
-                        [fullImage]="ProductImage+product[0].productID+'/productImages/'+image" zoomMode="hover">
-                     </ngx-image-zoom>
+         <form [formGroup]="registrationForm">
+            <div fxLayout="row wrap" fxFlex="100" fxFlex.gt-md="100" fxFlex.gt-sm="100">
+               <div fxFlex="100" fxFlex.gt-md="50" fxFlex.md="45">
+                  <mat-card class="product-image">
+                     <div *ngFor="let image of product[0].productImg">
+                        <ngx-image-zoom [thumbImage]="ProductImage+product[0].productID+'/productImages/'+image"
+                           [fullImage]="ProductImage+product[0].productID+'/productImages/'+image" zoomMode="hover">
+                        </ngx-image-zoom>
+                     </div>
+                  </mat-card>
+                  <mat-card class="product-image">
+                     <div>
+                        <button mat-icon-button fxHide="false" fxHide.gt-md>
+                           <mat-icon>fullscreen</mat-icon>
+                        </button>
+                        <!-- <img [src]="product.pictures[bigProductImageIndex].big" /> -->
+                        <img
+                           [src]="ProductImage+product[0].productID+'/productColorImage/'+product[0].productID+'/'+product[0]?.productImg[bigProductImageIndex]" />
+                     </div>
+                     <a (click)="openProductDialog(product[0], bigProductImageIndex)" style="cursor: pointer;">
+                        <mat-icon>zoom_in</mat-icon>
+                     </a>
+                  </mat-card>
+
+
+                  <div class="small-carousel">
+                     <div class="swiper-container" [swiper]="config">
+                        <div class="swiper-wrapper">
+                           <div *ngFor="let image of  product[0]?.productImg; let i=index" class="swiper-slide">
+                              <mat-card (click)="selectImage(i)" class="p-1">
+                                 <img
+                                    [src]="ProductImage+product[0].productID+'/productColorImage/'+product[0].productID+'/'+image"
+                                    class="swiper-lazy" />
+                                 <div class="swiper-lazy-preloader"></div>
+                              </mat-card>
+                           </div>
+                        </div>
+                        <button mat-icon-button class="swiper-button-prev swipe-arrow">
+                           <mat-icon>keyboard_arrow_left</mat-icon>
+                        </button>
+                        <button mat-icon-button class="swiper-button-next swipe-arrow">
+                           <mat-icon>keyboard_arrow_right</mat-icon>
+                        </button>
+                     </div>
                   </div>
+               </div>
+               <div fxFlex="100" fxFlex.gt-md="50" fxFlex.md="55" ngClass.gt-sm="px-3 m-0" ngClass.sm="mt-2"
+                  ngClass.xs="mt-2">
 
+                  <div class="product-right">
+                     <div class="product-details">
+                        <h2>{{product[0].productName}}</h2>
+                        <h4 *ngIf="!productsService?.catalogMode">
+                           <del>{{product[0].price | currency:_productService?.currency:'symbol'}}</del><span>{{product[0].discount}}%
+                              off</span></h4>
+                        <h3 class="price" *ngIf="!productsService?.catalogMode">
+                           {{product[0].salePrice | currency:_productService?.currency:'symbol'}}</h3>
+                        <p class="text-muted description">{{product[0].description}}</p>
+                     </div>
 
-
-               </mat-card>
-               <mat-card class="product-image">
-                  <div>
-                     <button mat-icon-button fxHide="false" fxHide.gt-md>
-                        <mat-icon>fullscreen</mat-icon>
-                     </button>
-                     <!-- <img [src]="product.pictures[bigProductImageIndex].big" /> -->
-                     <img
-                        [src]="ProductImage+product[0].productID+'/productColorImage/'+product[0].productID+'/'+product[0]?.productImg[bigProductImageIndex]" />
-                  </div>
-                  <a (click)="openProductDialog(product[0], bigProductImageIndex)" style="cursor: pointer;">
-                     <mat-icon>zoom_in</mat-icon>
-                  </a>
-               </mat-card>
-
-
-               <div class="small-carousel">
-                  <div class="swiper-container" [swiper]="config">
-                     <div class="swiper-wrapper">
-                        <div *ngFor="let image of  product[0]?.productImg; let i=index" class="swiper-slide">
-                           <mat-card (click)="selectImage(i)" class="p-1">
-                              <img [src]="ProductImage+product[0].productID+'/productColorImage/'+product[0].productID+'/'+image"
-                                 class="swiper-lazy" />
-                              <div class="swiper-lazy-preloader"></div>
-                           </mat-card>
+                     <div>
+                        <label class="product__option-label">Size</label>
+                        <div class="input-radio-label">
+                           <!-- <div class="input-radio-label__list">
+                              <label>
+                                 <input type="radio"  name="size" formControlName="size">
+                                 <span>M</span>
+                              </label>
+                              <label>
+                                 <input type="radio" name="size" formControlName="size">
+                                 <span>L</span>
+                              </label>
+                              <label>
+                                 <input type="radio" name="size" formControlName="size" disabled>
+                                 <span>XL</span>
+                              </label>
+                           </div> -->
+                           <div class="input-radio-label__list">
+                              <label>
+                                 <input id="male" type="radio" value="S" name="size" formControlName="size">
+                                 <span>S</span>
+                              </label>
+                              <label>
+                                 <input id="male" type="radio" value="M" name="size" formControlName="size">
+                                 <span>M</span>
+                              </label>
+                              <label>
+                                 <input id="female" type="radio" value="L" name="size" formControlName="size">
+                                 <span>L</span>
+                              </label>
+                              <label>
+                                 <input id="female" type="radio" value="XL" name="size" formControlName="size">
+                                 <span>XL</span>
+                              </label>
+                              <label>
+                                 <input id="female" type="radio" value="XXL" name="size" formControlName="size">
+                                 <span>XXL</span>
+                              </label>
+                              <label>
+                                 <input id="female" type="radio" value="XXXL" name="size" formControlName="size"
+                                    disabled>
+                                 <span>XXXL</span>
+                              </label>
+                           </div>
+                        </div>
+                        <div *ngIf="isSubmitted && myForm.invalid" class="invalid-feedback">
+                           Please select either size
                         </div>
                      </div>
-                     <button mat-icon-button class="swiper-button-prev swipe-arrow">
-                        <mat-icon>keyboard_arrow_left</mat-icon>
-                     </button>
-                     <button mat-icon-button class="swiper-button-next swipe-arrow">
-                        <mat-icon>keyboard_arrow_right</mat-icon>
-                     </button>
+                     <!-- <div class="form-group product__option">
+                     <div>
+                        <label class="product__option-label">SIZE</label></div>
+
+                     <div style="width: auto; display: inline-block;">
+                        <div class="size-data_round size-active">
+                           <a title="Size : XS">S</a>
+                        </div>
+                     </div>
+                     <div class="size-data_round">
+                        <a title="Size : XS">M</a>
+                     </div>
+                     <div class="size-data_round">
+                        <a title="Size : XS">L</a>
+                     </div>
+                     <div class="size-data_round">
+                        <a title="Size : XS">XL</a>
+                     </div>
+                     <div class="size-data_round">
+                        <a title="Size : XS">XXL</a>
+                     </div>
+                  </div> -->
+                     <div class="form-group product__option">
+                        <label class="product__option-label">Color</label>
+                        <div class="   ">
+                           <div class="input-radio-color__list">
+                              <label class="input-radio-color__item input-radio-color__item--white" style="color: #fff;"
+                                 data-toggle="tooltip" title="White">
+                                 <input type="radio" name="color">
+                                 <span></span>
+                              </label>
+                              <label class="input-radio-color__item" style="color: #ffd333;" data-toggle="tooltip"
+                                 title="Yellow">
+                                 <input type="radio" name="color">
+                                 <span></span>
+                              </label>
+                              <label class="input-radio-color__item" style="color: #ff4040;" data-toggle="tooltip"
+                                 title="Red">
+                                 <input type="radio" name="color">
+                                 <span></span>
+                              </label>
+                              <label class="input-radio-color__item" style="color: #40ff40;" data-toggle="tooltip"
+                                 title="Green">
+                                 <input type="radio" name="color">
+                                 <span></span>
+                              </label>
+                              <label class="input-radio-color__item" style="color: #050000;" data-toggle="tooltip"
+                                 title="Black">
+                                 <input type="radio" name="color">
+                                 <span></span>
+                              </label>
+                              <label class="input-radio-color__item" style="color: #ff8e8e;" data-toggle="tooltip"
+                                 title="Pink">
+                                 <input type="radio" name="color">
+                                 <span></span>
+                              </label>
+                              <label class="input-radio-color__item input-radio-color__item--disabled"
+                                 style="color: #4080ff;" data-toggle="tooltip" title="Blue">
+                                 <input type="radio" name="color" disabled>
+                                 <span></span>
+                              </label>
+                           </div>
+                        </div>
+                     </div>
+
+                     <div class="py-1 mt-15">
+                        <p>
+                           <span class="text-muted fw-500">Avalibility: </span>
+                           <span class="avalibility" *ngIf="counter <= product[0].stockQty"><span>In Stock</span></span>
+                           <span class="avalibility" *ngIf="counter > product[0].stockQty"><span>Out of
+                                 Stock</span></span>
+                        </p>
+                     </div>
+                     <div class="quantity">
+                        <span class="text-muted fw-500">Quantity</span>
+                        <div fxLayout="row" fxLayout.xs="column" class="text-muted">
+                           <div fxLayout="row" fxLayoutAlign="center start">
+                              <button mat-icon-button matTooltip="Remove" (click)="decrement()">
+                                 <mat-icon>remove</mat-icon>
+                              </button>
+                              <input type="text" name="quantity" value="{{counter}}" class="form-control input-number">
+                              <button mat-icon-button matTooltip="Add" (click)="increment()">
+                                 <mat-icon>add</mat-icon>
+                              </button>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="buttons mt-20">
+                        <button mat-raised-button color="primary" class="btn-project mr-10"
+                           (click)="addToCart(product[0], counter)">ADD TO CARD</button>
+                        <button mat-raised-button color="primary" class="btn-project"
+                           (click)="buyNow(product[0], counter)">BUY NOW</button>
+                     </div>
                   </div>
                </div>
             </div>
-            <div fxFlex="100" fxFlex.gt-md="50" fxFlex.md="55" ngClass.gt-sm="px-3 m-0" ngClass.sm="mt-2"
-               ngClass.xs="mt-2">
-
-               <div class="product-right">
-                  <div class="product-details">
-                     <h2>{{product[0].productName}}</h2>
-                     <h4 *ngIf="!productsService?.catalogMode">
-                        <del>{{product[0].salePrice | currency:_productService?.currency:'symbol'}}</del><span>{{product[0].discount}}%
-                           off</span></h4>
-                     <h3 class="price" *ngIf="!productsService?.catalogMode">
-                        {{product[0].price | currency:_productService?.currency:'symbol'}}</h3>
-                     <p class="text-muted description">{{product[0].description}}</p>
-                  </div>
-                  <div class="py-1 mt-15">
-                     <p>
-                        <span class="text-muted fw-500">Avalibility: </span>
-                        <span class="avalibility" *ngIf="counter <= product[0].stockQty"><span>In Stock</span></span>
-                        <span class="avalibility" *ngIf="counter > product[0].stockQty"><span>Out of Stock</span></span>
-                     </p>
-                  </div>
-                  <div class="quantity">
-                     <span class="text-muted fw-500">Quantity</span>
-                     <div fxLayout="row" fxLayout.xs="column" class="text-muted">
-                        <div fxLayout="row" fxLayoutAlign="center start">
-                           <button mat-icon-button matTooltip="Remove" (click)="decrement()">
-                              <mat-icon>remove</mat-icon>
-                           </button>
-                           <input type="text" name="quantity" value="{{counter}}" class="form-control input-number">
-                           <button mat-icon-button matTooltip="Add" (click)="increment()">
-                              <mat-icon>add</mat-icon>
-                           </button>
-                        </div>
-                     </div>
-                  </div>
-                  <div class="buttons mt-20">
-                     <button mat-raised-button color="primary" class="btn-project mr-10"
-                        (click)="addToCart(product[0], counter)">ADD TO CARD</button>
-                     <button mat-raised-button color="primary" class="btn-project"
-                        (click)="buyNow(product[0], counter)">BUY NOW</button>
-                  </div>
-               </div>
-            </div>
-         </div>
-
+         </form>
          <div class="review-wrapper" fxFlex="100" fxFlex.md="75">
             <mat-card>
                <mat-tab-group [@.disabled]="true" [selectedIndex]="0">
@@ -296,6 +411,7 @@
       </div>
 
    </div>
+
    <!-- <div class="py-2 mt-2">
        <h2>Related Products</h2>
        <div class="divider"></div>

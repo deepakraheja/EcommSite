@@ -12,6 +12,7 @@ import { ProductsService } from 'src/app/Service/Products.service';// created by
 import { Products } from 'src/app/modals/products.model';// created by deepak  on 1 jun 2020
 import { environment } from 'src/environments/environment';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 
 @Component({
@@ -20,6 +21,11 @@ import { NgxSpinnerService } from 'ngx-spinner';
   styleUrls: ['./product-details.component.sass']
 })
 export class ProductDetailsComponent implements OnInit {
+  isSubmitted = false;
+
+  registrationForm: FormGroup;
+
+
   public ProductImage = environment.ProductImage;
 
   public config: SwiperConfigInterface = {};
@@ -46,7 +52,13 @@ export class ProductDetailsComponent implements OnInit {
     private router: Router,
     private cartService: CartService,
     public _productService: ProductsService,
-    private spinner: NgxSpinnerService) {
+    private spinner: NgxSpinnerService,
+    public formBuilder: FormBuilder) {
+
+    this.registrationForm = this.formBuilder.group({
+      size: ['', [Validators.required]]
+    })
+
 
     this.route.params.subscribe(params => {
       const id = params['id'];
@@ -66,11 +78,13 @@ export class ProductDetailsComponent implements OnInit {
       })
       setTimeout(() => {
         this.spinner.hide();
-        
+
       }, 2000);
     });
   }
-
+  get myForm() {
+    return this.registrationForm.get('size');
+  }
   ngOnInit() {
     //this.productsService.getProducts().subscribe(product => this.products = product);
 
@@ -153,6 +167,14 @@ export class ProductDetailsComponent implements OnInit {
 
   // Add to cart
   public addToCart(product: Products, quantity) {
+
+    debugger;
+
+    this.isSubmitted = true;
+    if (!this.registrationForm.valid) {
+      return false;
+    }
+
     if (quantity == 0) return false;
     this.cartService.addToCart(product, parseInt(quantity));
   }
