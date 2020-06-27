@@ -18,7 +18,7 @@
                         </button>
                         <!-- <img [src]="product.pictures[bigProductImageIndex].big" /> -->
                         <img
-                           [src]="ProductImage+product[0].productID+'/productColorImage/'+product[0].productID+'/'+product[0]?.productImg[bigProductImageIndex]" />
+                           [src]="ProductImage+product[0].productID+'/productColorImage/'+product[0].productSizeColorId+'/'+product[0]?.productImg[bigProductImageIndex]" />
                      </div>
                      <a (click)="openProductDialog(product[0], bigProductImageIndex)" style="cursor: pointer;">
                         <mat-icon>zoom_in</mat-icon>
@@ -32,7 +32,7 @@
                            <div *ngFor="let image of  product[0]?.productImg; let i=index" class="swiper-slide">
                               <mat-card (click)="selectImage(i)" class="p-1">
                                  <img
-                                    [src]="ProductImage+product[0].productID+'/productColorImage/'+product[0].productID+'/'+image"
+                                    [src]="ProductImage+product[0].productID+'/productColorImage/'+product[0].productSizeColorId+'/'+image"
                                     class="swiper-lazy" />
                                  <div class="swiper-lazy-preloader"></div>
                               </mat-card>
