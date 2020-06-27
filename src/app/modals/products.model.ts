@@ -34,8 +34,8 @@ export class Products {
     BannerImage?: string;
     FrontImage?: string;
 
-    productImg?:string[];
-
+    productImg?: string[];
+    productSizeColorId?: number;
 
     constructor(
         productID?: number,
@@ -72,7 +72,8 @@ export class Products {
         SubTitle?: string,
         BannerImage?: string,
         FrontImage?: string,
-        productImg?:string[],
+        productImg?: string[],
+        productSizeColorId?: number,
     ) {
         this.productID = productID;
         this.productName = productName;
@@ -110,8 +111,9 @@ export class Products {
         this.SubTitle = SubTitle;
         this.BannerImage = BannerImage;
         this.FrontImage = FrontImage;
-        this.productImg=productImg;
-        
+        this.productImg = productImg;
+        this.productSizeColorId = productSizeColorId
+
     }
 
 }
