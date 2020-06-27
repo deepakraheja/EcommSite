@@ -4834,3 +4834,230 @@ margin: 10px 0;
     margin-right: 40px;
   }
 }
+
+.product__option {
+  margin-bottom: 18px;
+
+  &:last-child {
+      margin-bottom: 0;
+  }
+}
+.product__option-label {
+  font-size: 13px;
+  text-transform: uppercase;
+ 
+  padding-bottom: 2px;
+}
+
+
+
+
+
+.input-radio-color {
+  display: block;
+}
+.input-radio-color__list {
+  padding: #{max(0, 32px - 30px) / 2} 0;
+  display: flex;
+  flex-wrap: wrap;
+  margin: -2px;
+}
+.input-radio-color__item {
+  width: 30px;
+  height: 30px;
+  display: block;
+  margin: 2px;
+  cursor: pointer;
+
+  input {
+      pointer-events: none;
+      opacity: 0;
+      position: absolute;
+  }
+
+  span {
+      position: relative;
+      width: 30px;
+      height: 30px;
+      display: block;
+      border-radius: 30px / 2;
+      background: currentColor;
+      transform: scale(#{round((30px * .75) / 2) / 30px * 2});
+      transition: transform .2s;
+
+      &:before,
+      &:after {
+          display: block;
+          position: absolute;
+          content: '';
+          border-radius: 1000px;
+      }
+      &:before {
+          left: 3px;
+          top: 3px;
+          width: (30px - 3px * 2);
+          height: (30px - 3px * 2);
+          background: #fff ;
+          transform: scale(0);
+          transition: transform .2s;
+      }
+      &:after {
+          left: (30px - 14px) / 2;
+          top: (30px - 14px) / 2;
+          width: 14px;
+          height: 14px;
+          background: currentColor;
+          transform: scale(0);
+          transition: transform .2s;
+      }
+  }
+
+  &:hover input:enabled ~ span {
+      transform: scale(#{round((30px * .875) / 2) / 30px * 2});
+  }
+}
+.input-radio-color__item input:enabled:checked {
+  & ~ span,
+  & ~ span:before,
+  & ~ span:after {
+      transform: scale(1);
+  }
+}
+.input-radio-color__item--disabled {
+  cursor: default;
+
+  span {
+      transform: scale(.75);
+
+      &:before {
+          transform: scale(1.33) rotateZ(45deg);
+          left: 30px / 2 - 1px;
+          top: -1px;
+          width: 2px;
+          height: calc(100% + 2px);
+          background:  rgba(#000, .3);
+      }
+  }
+}
+.input-radio-color__item--white {
+  span {
+      box-shadow: inset 0 0 0 2px #ccc;
+
+      &:after {
+          box-shadow: inset 0 0 0 2px #ccc ;
+      }
+  }
+}
+
+.size-data_round a {
+  font-family: var(--font-family);
+  font-size: 13px;
+  font-weight: var(--font-weight-bold);
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.25;
+  letter-spacing: normal;
+  text-align: left;
+  color: var(--text-color-tertiary);
+  box-sizing: border-box;
+
+  color: var(--link-color);
+  text-decoration: var(--link-decoration);
+  background-color: transparent;
+}
+
+.size-data_round {
+  border-radius: 44px!important;
+  padding: 6px 0!important;
+  height: 30px;
+  width: 30px!important;
+  text-align: center;
+  border: 1px #a29191 solid;
+  display: inline-block;
+  margin-right: 20px;
+  cursor: pointer;
+  margin-bottom: 15px;
+  box-sizing: border-box;
+  
+}
+.size-data_round .size-active {
+  position: relative;
+  border: 1px solid #084f8b!important;
+  background: #084f8b!important;
+  padding: 8px 26px;
+  outline: 1px solid #fff;
+}
+
+.size-data_round .size-active a {
+  color: #fff;
+  font-weight: var(--font-weight-bold);
+}
+
+.product__option-label {
+  font-size: 16px;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: #6c757d;
+  padding-bottom: 2px;
+}
+
+.input-radio-label {
+  display: block;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.input-radio-label__list {
+  display: flex;
+  flex-wrap: wrap;
+  margin: -3px;
+}
+
+.input-radio-label__list label {
+  display: flex;
+  margin: 3px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.input-radio-label__list input {
+  position: absolute;
+  pointer-events: none;
+  opacity: 0;
+}
+
+.input-radio-label__list span {
+  cursor: pointer;
+  display: block;
+  height: 32px;
+  padding: 0.3125rem 1rem;
+  border-radius: 2px;
+  background: #f0f0f0;
+  color: #3d464d;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.input-radio-label__list input:checked ~ span {
+  cursor: default;
+  background: #ffd333;
+  color: #3d464d;
+  transition-duration: 0.08s, 0.08s;
+}
+
+.invalid-feedback {
+ 
+  width: 100%;
+  margin-top: .25rem;
+  font-size: 80%;
+  color: #dc3545;
+}
+
+.disabledradio{
+  opacity: .4;
+  cursor: not-allowed;
+  background: linear-gradient(rgba(255,255,255,.6),rgba(255,255,255,.6)),url(https://images.koovs.com/uploads/koovs/not_allowed.png) no-repeat;
+  background-position: center;
+
+}
