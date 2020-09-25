@@ -25,6 +25,7 @@ const routes: Routes = [
       { path: 'wishlist', component: WishlistComponent },
       { path: 'compare', component: CompareComponent },
       { path: 'my-account', component: MyAccountComponent },
+      { path: 'my-account/:cart', component: MyAccountComponent },
       { path: 'error', component: ErrorPageComponent },
     ]
   }

@@ -54,14 +54,14 @@ export class CartComponent implements OnInit {
     this._SharedDataService.currentUser.subscribe(res => {
    
       if (res == null || res == undefined) {
-        this.router.navigate(['/pages/my-account']);
+        this.router.navigate(['/pages/my-account/cart']);
       }
       else {
         if (res.length > 0) {
           this.router.navigate(['/pages/checkout']);
         }
         else {
-          this.router.navigate(['/pages/my-account']);
+          this.router.navigate(['/pages/my-account/cart']);
         }
       }
     });

@@ -3,6 +3,7 @@ import { CartService } from '../../shared/services/cart.service';
 import { Observable, of } from 'rxjs';
 import { CartItem } from 'src/app/modals/cart-item';
 import { ProductService } from '../../shared/services/product.service';
+import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-checkout',
@@ -10,7 +11,7 @@ import { ProductService } from '../../shared/services/product.service';
   styleUrls: ['./checkout.component.sass']
 })
 export class CheckoutComponent implements OnInit {
-
+  OrderForm: FormGroup;
   public cartItems: Observable<CartItem[]> = of([]);
   public buyProducts: CartItem[] = [];
 
@@ -18,7 +19,10 @@ export class CheckoutComponent implements OnInit {
   payments: string[] = ['Create an Account?', 'Flat Rate'];
   paymantWay: string[] = ['Direct Bank Transfer', 'PayPal'];
 
-  constructor(private cartService: CartService, public productService: ProductService) { }
+  constructor(
+    private cartService: CartService, 
+    public productService: ProductService
+    ) { }
 
   ngOnInit() {
     this.cartItems = this.cartService.getItems();
@@ -28,6 +32,6 @@ export class CheckoutComponent implements OnInit {
 
   public getTotal(): Observable<number> {
     return this.cartService.getTotalAmount();
-    }
+  }
 
 }
